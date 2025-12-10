@@ -14,7 +14,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.views.generic.edit import DeleteView, UpdateView
+from django.views.generic.edit import DeleteView, UpdateView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import user_passes_test
@@ -101,6 +101,15 @@ class JobDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         return self.request.user.is_staff
+
+
+class JobCreateView(LoginRequiredMixin, CreateView):
+    model = Vacancy
+    form_class = JobForm
+    template_name = "website/pages/job_add.html"
+    def form_valid(self, form):
+        self.object = form.save()
+        return HttpResponseRedirect(self.get_success_url())
 
 
 class JobEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):

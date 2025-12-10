@@ -1,9 +1,10 @@
-
+from django.urls import reverse
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Vacancy(models.Model):
+
     company = models.CharField(max_length=255)
     position_title = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
@@ -23,15 +24,17 @@ class Vacancy(models.Model):
     salary_from = models.PositiveIntegerField(null=True, blank=True)
     salary_to = models.PositiveIntegerField(null=True, blank=True)
     salary_note = models.CharField(max_length=100, default="Not stated")
-    
+
     url = models.URLField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
     publish_date = models.DateTimeField(auto_now_add=True)
     active_until = models.DateField()
-    
+
     job_description = models.TextField(help_text="HTML allowed for formatting")
 
-    experience_required = models.CharField(max_length=100, blank=True, help_text="E.g. '2+ years', 'Entry level'")
+    experience_required = models.CharField(
+        max_length=100, blank=True, help_text="E.g. '2+ years', 'Entry level'"
+    )
     education_level = models.CharField(
         max_length=50,
         choices=[
@@ -45,18 +48,23 @@ class Vacancy(models.Model):
         ],
         default="none",
         blank=True,
-        help_text="Minimum education required"
+        help_text="Minimum education required",
     )
-    industry = models.CharField(max_length=100, blank=True, help_text="Industry or sector, e.g. 'IT', 'Finance'")
-    
+    industry = models.CharField(
+        max_length=100, blank=True, help_text="Industry or sector, e.g. 'IT', 'Finance'"
+    )
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     icon_id = models.PositiveSmallIntegerField(
         default=1,
         validators=[MinValueValidator(1), MaxValueValidator(10)],
-        help_text="Random icon id from 1 to 10"
+        help_text="Random icon id from 1 to 10",
     )
+
+    def get_absolute_url(self):
+        return reverse("job_single", kwargs={"id": self.pk})
 
     class Meta:
         ordering = ["-publish_date"]

@@ -22,6 +22,7 @@ urlpatterns = [
     path("logout/", CustomLogoutView.as_view(), name="logout"),
     path("delete_job/<int:pk>/", JobDeleteView.as_view(), name="delete_job"),
     path("edit_job/<int:pk>/", JobEditView.as_view(), name="edit_job"),
+    path("add_job/", JobCreateView.as_view(), name="add_job"),
     # path("search/", page_views.search_results, name="search_results"),
     # path("products/", product_views.products, name="products"),
     # path("products/<slug:slug>/", product_views.single_product, name="product_single"),
