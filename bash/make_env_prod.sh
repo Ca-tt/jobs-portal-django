@@ -11,7 +11,7 @@ DEBUG=False
 ALLOWED_HOSTS=damir96.pythonanywhere.com,www.damir96.pythonanywhere.com
 
 DB_ENGINE=django.db.backends.sqlite3
-DB_NAME=db.sqlite3
+DB_NAME=/home/damir96/jobs-portal-django/db.sqlite3
 
 DJANGO_SETTINGS_MODULE=jobs_portal.settings.prod
 CSRF_TRUSTED_ORIGINS=https://damir96.pythonanywhere.com,http://damir96.pythonanywhere.co

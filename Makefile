@@ -25,26 +25,36 @@ migrate:
 changepass:
 	poetry run python manage.py changepassword $(user)
 
-static-prod:
-	python manage.py collectstatic --settings=jobs_portal.settings.prod --noinput
-
-requirements-prod:
+requirements:
 	poetry export -f requirements.txt --output requirements.txt --without-hashes
 
-migrate-prod:
-	python manage.py migrate --settings=jobs_portal.settings.prod
-
-prod-prep: 
-	migrate-prod static-prod
-
-check-prod:
-	python manage.py check --settings=jobs_portal.settings.prod
-
-activate-venv-prod:
-	source ~/.venvs/myvenv/bin/activate
+# 1. Create .env file on production
+# 2. Check for deploy-related issues
+# 3. Collect static files
+# 4. Apply database migrations
 
 env-prod:
 	chmod +x ./bash/make_env_prod.sh && ./bash/make_env_prod.sh
 
 deploy-check:
 	python manage.py check --deploy --settings=jobs_portal.settings.prod
+
+check-prod:
+	python manage.py check --settings=jobs_portal.settings.prod
+
+static-prod:
+	python manage.py collectstatic --settings=jobs_portal.settings.prod --noinput
+
+migrate-prod:
+	python manage.py makemigrations --settings=jobs_portal.settings.prod && python manage.py migrate --settings=jobs_portal.settings.prod
+
+superuser-prod:
+	python manage.py createsuperuser --settings=jobs_portal.settings.prod
+
+run-prod:
+	python manage.py runserver --settings=jobs_portal.settings.prod
+
+# Helpers
+activate-venv-prod:
+	source ~/.venvs/myvenv/bin/activate
+
