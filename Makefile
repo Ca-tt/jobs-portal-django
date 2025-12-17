@@ -39,3 +39,6 @@ prod-prep:
 
 check-prod:
 	python manage.py check --settings=jobs_portal.settings.prod
+
+activate-venv-prod:
+	source ~/.venvs/myvenv/bin/activate

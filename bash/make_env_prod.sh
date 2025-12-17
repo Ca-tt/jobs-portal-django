@@ -14,6 +14,7 @@ DB_ENGINE=django.db.backends.sqlite3
 DB_NAME=db.sqlite3
 
 DJANGO_SETTINGS_MODULE=jobs_portal.settings.prod
+CSRF_TRUSTED_ORIGINS=https://damir96.pythonanywhere.com,http://damir96.pythonanywhere.co
 EOF
 
 echo "Done! .env file created with production settings."
