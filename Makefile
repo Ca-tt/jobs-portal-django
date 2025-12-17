@@ -24,3 +24,18 @@ migrate:
 
 changepass:
 	poetry run python manage.py changepassword $(user)
+
+static-prod:
+	python manage.py collectstatic --settings=jobs_portal.settings.prod --noinput
+
+requirements-prod:
+	poetry export -f requirements.txt --output requirements.txt --without-hashes
+
+migrate-prod:
+	python manage.py migrate --settings=jobs_portal.settings.prod
+
+prod-prep: 
+	migrate-prod static-prod
+
+check-prod:
+	python manage.py check --settings=jobs_portal.settings.prod

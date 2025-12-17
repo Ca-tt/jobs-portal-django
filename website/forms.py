@@ -104,7 +104,6 @@ class JobForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
-            # print("🐍 File: website/forms.py | Line: 43 | __init__ ~ field_name",field_name)
             if field_name not in ["is_active", "employment_type"]:
                 field.widget.attrs["class"] = (
                     field.widget.attrs.get("class", "") + " form-control"
