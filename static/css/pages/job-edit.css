@@ -1,0 +1,39 @@
+.job-edit {
+    --top-margin: 90px;
+    padding: var(--top-margin) 0 0 0;
+    background-image: url(../../img/banner/banner.png);
+}
+
+/* help text styling fix */
+.job-edit .row .helptext {
+    font-size: 12px;
+    color: #69b1ef;
+}
+
+/* only those who has checkbox and select */
+.job-edit .row p:has(> input[type="checkbox"]),
+.job-edit .row p:has(> select) {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* nice-select styling fix */
+.job-edit .row p:has(> select)>.nice-select {
+    padding-right: 40px;
+    padding-top: 0;
+}
+
+/* label margin fix */
+.job-edit .row p:has(> input[type="checkbox"])>label,
+.job-edit .row p:has(> select)>label {
+    margin: 0;
+}
+
+/* input type checkbox order fix */
+.job-edit .row p:has(> input[type="checkbox"])>input {
+    position: static;
+    margin-top: 0;
+    margin-left: 0;
+    order: 2;
+}

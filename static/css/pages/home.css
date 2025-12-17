@@ -1,0 +1,13 @@
+:root {
+    --logout-button-color: #e74a4a;
+}
+.logout-button {
+    background-color: transparent;
+    outline: 1px solid var(--logout-button-color);
+    /* color: var(logout-button-color); */
+}
+.logout-button:hover {
+    background-color: var(--logout-button-color);
+    color: #fff !important;
+    border-color: var(--logout-button-color) !important;
+}
