@@ -19,6 +19,8 @@ env_file = BASE_DIR / ".env"
 
 if env_file.exists():
     env.read_env(env_file)
+    
+
 
 # Application definition
 INSTALLED_APPS = [
