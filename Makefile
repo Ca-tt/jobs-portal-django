@@ -45,3 +45,6 @@ activate-venv-prod:
 
 env-prod:
 	chmod +x ./bash/make_env_prod.sh && ./bash/make_env_prod.sh
+
+deploy-check:
+	python manage.py check --deploy --settings=jobs_portal.settings.prod
