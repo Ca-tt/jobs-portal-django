@@ -14,7 +14,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
-CSRF_TRUSTED_ORIGINS = env.list('ALLOWED_HOSTS', default=["https://damir96.pythonanywhere.com","http://www.damir96.pythonanywhere.com"])
+CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default=["https://damir96.pythonanywhere.com","http://www.damir96.pythonanywhere.com"])
 
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
