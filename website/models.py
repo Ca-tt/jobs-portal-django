@@ -4,7 +4,6 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Vacancy(models.Model):
-
     company = models.CharField(max_length=255)
     position_title = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
@@ -30,10 +29,10 @@ class Vacancy(models.Model):
     publish_date = models.DateTimeField(auto_now_add=True)
     active_until = models.DateField()
 
-    job_description = models.TextField(help_text="HTML allowed for formatting")
+    job_description = models.TextField(help_text="Дозволено HTML для форматування")
 
     experience_required = models.CharField(
-        max_length=100, blank=True, help_text="E.g. '2+ years', 'Entry level'"
+        max_length=100, blank=True, help_text="Наприклад, '2+ роки', 'Без досвіду'"
     )
     education_level = models.CharField(
         max_length=50,
@@ -48,10 +47,12 @@ class Vacancy(models.Model):
         ],
         default="none",
         blank=True,
-        help_text="Minimum education required",
+        help_text="Мінімальний необхідний рівень освіти",
     )
     industry = models.CharField(
-        max_length=100, blank=True, help_text="Industry or sector, e.g. 'IT', 'Finance'"
+        max_length=100,
+        blank=True,
+        help_text="Індустрія або сфера, наприклад, 'IT', 'Фінанси'",
     )
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -60,7 +61,7 @@ class Vacancy(models.Model):
     icon_id = models.PositiveSmallIntegerField(
         default=1,
         validators=[MinValueValidator(1), MaxValueValidator(10)],
-        help_text="Random icon id from 1 to 10",
+        help_text="Випадковий id іконки від 1 до 10",
     )
 
     def get_absolute_url(self):

@@ -1,10 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up</title>
+    <title>Реєстрація</title>
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" />
     <link rel="stylesheet" href="{% static 'css/libs/bootstrap.min.css' %}" />
@@ -19,9 +19,9 @@
           {% for field in form %}
             <div class="form-group">{{ field.label_tag }}{{ field }}</div>
           {% endfor %}
-          <button type="submit">Create Account</button>
+          <button type="submit">Створити обліковий запис</button>
           <p class="message">
-            Already registered? <a href="{% url 'login' %}">Sign In</a>
+            Вже зареєстровані? <a href="{% url 'login' %}">Увійти</a>
           </p>
         </form>
         {% if form.errors %}

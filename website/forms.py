@@ -6,26 +6,31 @@ from .models import Vacancy
 
 class SignupForm(forms.ModelForm):
     password = forms.CharField(
+        label="Пароль",
         widget=forms.PasswordInput(
-            attrs={"class": "form-control", "placeholder": "Password"}
+            attrs={"class": "form-control", "placeholder": "Пароль"}
         )
     )
     password2 = forms.CharField(
-        label="Confirm password",
+        label="Підтвердіть пароль",
         widget=forms.PasswordInput(
-            attrs={"class": "form-control", "placeholder": "Confirm password"}
+            attrs={"class": "form-control", "placeholder": "Підтвердіть пароль"}
         ),
     )
 
     class Meta:
         model = User
         fields = ("username", "email")
+        labels = {
+            "username": "Ім'я користувача",
+            "email": "Електронна адреса",
+        }
         widgets = {
             "username": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "Username"}
+                attrs={"class": "form-control", "placeholder": "Ім'я користувача"}
             ),
             "email": forms.EmailInput(
-                attrs={"class": "form-control", "placeholder": "Email address"}
+                attrs={"class": "form-control", "placeholder": "Електронна адреса"}
             ),
         }
 
@@ -33,7 +38,7 @@ class SignupForm(forms.ModelForm):
         password = self.cleaned_data.get("password")
         password2 = self.cleaned_data.get("password2")
         if password and password2 and password != password2:
-            raise forms.ValidationError("Passwords don't match")
+            raise forms.ValidationError("Паролі не співпадають")
         return password2
 
     def save(self, commit=True):
@@ -46,8 +51,8 @@ class SignupForm(forms.ModelForm):
 
 class CustomAuthenticationForm(AuthenticationForm):
     error_messages = {
-        "invalid_login": "You entered wrong username or password. Please dobuble check and try again.",
-        "inactive": "This account is inactive. Please contact support.",
+        "invalid_login": "Ви ввели невірне ім'я користувача або пароль. Будь ласка, перевірте ще раз і спробуйте знову.",
+        "inactive": "Цей обліковий запис неактивний. Будь ласка, зверніться до служби підтримки."
     }
 
 
@@ -55,25 +60,43 @@ class JobForm(forms.ModelForm):
     class Meta:
         model = Vacancy
         fields = "__all__"
+        labels = {
+            "company": "Компанія",
+            "position_title": "Назва вакансії",
+            "location": "Місцезнаходження",
+            "employment_type": "Тип зайнятості",
+            "salary_from": "Мінімальна зарплата",
+            "salary_to": "Максимальна зарплата",
+            "salary_note": "Примітка до зарплати",
+            "url": "Посилання",
+            "is_active": "Активна",
+            "publish_date": "Дата публікації",
+            "active_until": "Актуально до",
+            "job_description": "Опис вакансії",
+            "experience_required": "Необхідний досвід",
+            "education_level": "Освітній рівень",
+            "industry": "Індустрія",
+            "icon_id": "Іконка",
+        }
         widgets = {
             "position_title": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "Enter job title"}
+                attrs={"class": "form-control", "placeholder": "Введіть назву вакансії"}
             ),
             "job_description": forms.Textarea(
                 attrs={
                     "class": "form-control",
                     "rows": 5,
-                    "placeholder": "Enter job description",
+                    "placeholder": "Введіть опис вакансії",
                 }
             ),
             "location": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "Enter location"}
+                attrs={"class": "form-control", "placeholder": "Введіть місцезнаходження"}
             ),
             "salary_from": forms.NumberInput(
-                attrs={"class": "form-control", "placeholder": "Minimum salary"}
+                attrs={"class": "form-control", "placeholder": "Мінімальна зарплата"}
             ),
             "salary_to": forms.NumberInput(
-                attrs={"class": "form-control", "placeholder": "Maximum salary"}
+                attrs={"class": "form-control", "placeholder": "Максимальна зарплата"}
             ),
             "is_active": forms.CheckboxInput(attrs={"class": "form-check-input"}),
         }
