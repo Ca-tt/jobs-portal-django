@@ -42,3 +42,6 @@ check-prod:
 
 activate-venv-prod:
 	source ~/.venvs/myvenv/bin/activate
+
+env-prod:
+	chmod +x ./bash/make_env_prod.sh && ./bash/make_env_prod.sh
